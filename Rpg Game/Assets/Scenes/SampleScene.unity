@@ -743,7 +743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 300
-  playerBody: {fileID: 927079411}
+  playerBody: {fileID: 1491210168}
 --- !u!1 &1233605372
 GameObject:
   m_ObjectHideFlags: 0
