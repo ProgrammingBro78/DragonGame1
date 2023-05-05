@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     float original;
     
     public Animator animator;
-
+    public GameObject dialog1;
 
 
     // Start is called before the first frame update
@@ -29,12 +29,28 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    void Interact()
+    {
+        if (Input.GetKeyDown(KeyCode.E)) {
+            float interactRange = 2f;
+            Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
+            foreach (Collider collider in colliderArray)
+            {
+                if (collider.gameObject.tag == "Abe")
+                {
+                    dialog1.SetActive(true);
+                }
+            }
+        }
+
+    }
+
     // Update is called once per frame
     void Update()
     {
-      
 
 
+        Interact();
         float Horizontal = Input.GetAxis("Horizontal") * Time.deltaTime * vel;
         float Vertical = Input.GetAxis("Vertical") * Time.deltaTime * vel;
         transform.Translate(Horizontal, 0, Vertical);
@@ -54,11 +70,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(new Vector3(0,  10f, 0), ForceMode.Impulse);
                 is_on_ground = false;
             }
-            if (Input.GetKey("c"))
-            {
-                transform.localScale = new Vector3(transform.localScale.x, 0.6740307f, transform.localScale.z);
-
-            }
+            
             else
             {
                transform.localScale = new Vector3(transform.localScale.x, original, transform.localScale.z);
@@ -82,6 +94,11 @@ public class PlayerMovement : MonoBehaviour
         {
             is_on_ground = true;
         }
+/*        if (collision.gameObject.tag == "Abe")
+        {
+            dialog1.SetActive(true);
+
+        }*/
         
     }
 
